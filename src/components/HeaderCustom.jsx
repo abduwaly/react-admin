@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Menu, Icon, Layout, Badge, Popover } from 'antd';
 import screenfull from 'screenfull';
-import { gitOauthToken, gitOauthInfo } from '../axios';
+// import { gitOauthToken, gitOauthInfo } from '../axios';
 import { queryString } from '../utils';
 import avater from '../style/imgs/b1.jpg';
 import SiderCustom from './SiderCustom';
@@ -39,19 +39,22 @@ class HeaderCustom extends Component {
         // }
         const _user = JSON.parse(localStorage.getItem('user')) || '测试';
         if (!_user && QueryString.hasOwnProperty('code')) {
-            gitOauthToken(QueryString.code).then(res => {
-                gitOauthInfo(res.access_token).then(info => {
-                    this.setState({
-                        user: info
-                    });
-                    localStorage.setItem('user', JSON.stringify(info));
-                });
-            });
+            // gitOauthToken(QueryString.code).then(res => {
+            //     gitOauthInfo(res.access_token).then(info => {
+            //         this.setState({
+            //             user: info
+            //         });
+            //         localStorage.setItem('user', JSON.stringify(info));
+            //     });
+            // });
         } else {
             this.setState({
                 user: _user
             });
         }
+    };
+    toHelpCentre = () => {
+      this.props.history.push('/help');
     };
     screenFull = () => {
         if (screenfull.enabled) {
@@ -97,11 +100,14 @@ class HeaderCustom extends Component {
                     style={{ lineHeight: '64px', float: 'right' }}
                     onClick={this.menuClick}
                 >
+                    <Menu.Item key="help" onClick={this.toHelpCentre} >
+                        <Icon type="customer-service" onClick={this.toHelpCentre} />
+                    </Menu.Item>
                     <Menu.Item key="full" onClick={this.screenFull} >
                         <Icon type="arrows-alt" onClick={this.screenFull} />
                     </Menu.Item>
                     <Menu.Item key="1">
-                        <Badge count={25} overflowCount={10} style={{marginLeft: 10}}>
+                        <Badge count={25} overflowCount={99} style={{marginLeft: 10}}>
                             <Icon type="notification" />
                         </Badge>
                     </Menu.Item>

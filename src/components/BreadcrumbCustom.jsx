@@ -2,7 +2,8 @@
  * Created by hao.cheng on 2017/4/22.
  */
 import React from 'react';
-import { Breadcrumb, Switch, Icon } from 'antd';
+import { Breadcrumb } from 'antd';
+// import { Icon, Switch } from 'antd';
 import { Link } from 'react-router-dom';
 import themes from '../style/theme';
 
@@ -42,12 +43,12 @@ class BreadcrumbCustom extends React.Component {
         })
     };
     render() {
-        const themesTag = this.state.themes.map((v, i) => (
-            <div className="pull-left y-center mr-m mb-s" key={i}>
-                <i className={`w-24 mr-s b-a ${v.type}`} />
-                <Switch checked={v.checked} onChange={() => this.themeChange(v)} />
-            </div>
-        ));
+        // const themesTag = this.state.themes.map((v, i) => (
+        //     <div className="pull-left y-center mr-m mb-s" key={i}>
+        //         <i className={`w-24 mr-s b-a ${v.type}`} />
+        //         <Switch checked={v.checked} onChange={() => this.themeChange(v)} />
+        //     </div>
+        // ));
         const first = <Breadcrumb.Item>{this.props.first}</Breadcrumb.Item> || '';
         const second = <Breadcrumb.Item>{this.props.second}</Breadcrumb.Item> || '';
         return (
@@ -57,6 +58,8 @@ class BreadcrumbCustom extends React.Component {
                         {first}
                         {second}
                 </Breadcrumb>
+                {/*
+
                 <div className={`switcher dark-white ${this.state.switcherOn ? 'active' : ''}`}>
                     <a className="sw-btn dark-white" onClick={this.switcherOn}>
                         <Icon type="setting" className="text-dark" />
@@ -65,6 +68,8 @@ class BreadcrumbCustom extends React.Component {
                         { themesTag }
                     </div>
                 </div>
+
+                 */}
                 <style>{`
                     ${this.state.theme ?
                     `

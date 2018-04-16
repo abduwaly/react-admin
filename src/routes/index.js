@@ -46,7 +46,19 @@ export default class CRouter extends Component {
     render() {
         return (
             <Switch>
+                {/* App相关 */}
                 <Route exact path="/app/dashboard/index" component={Dashboard} />
+                <Route exact path="/app/manager/add" component={() => <p>添加用户</p>} />
+                <Route exact path="/app/manager/list" component={() => <p>用户列表</p>} />
+                <Route exact path="/app/product/add" component={() => <p>添加商品</p>} />
+                <Route exact path="/app/product/list" component={() => <p>商品列表</p>} />
+                <Route exact path="/app/order/list" component={() => <p>订单列表</p>} />
+
+                {/* 权限管理相关 */}
+                <Route exact path="/app/auth/basic" component={AuthBasic} />
+                <Route exact path="/app/auth/routerEnter" component={(props) => this.requireAuth('auth/testPage', <RouterEnter {...props} />)} />
+
+                {/* 项目无关,暂时保留 */}
                 <Route exact path="/app/form/basicForm" component={BasicForm} />
                 <Route exact path="/app/table/basicTable" component={BasicTable} />
                 <Route exact path="/app/table/advancedTable" component={AdvancedTable} />
@@ -68,12 +80,7 @@ export default class CRouter extends Component {
 
                 <Route exact path="/app/animation/basicAnimations" component={BasicAnimations} />
                 <Route exact path="/app/animation/exampleAnimations" component={ExampleAnimations} />
-
-                <Route exact path="/app/auth/basic" component={AuthBasic} />
-                <Route exact path="/app/auth/routerEnter" component={(props) => this.requireAuth('auth/testPage', <RouterEnter {...props} />)} />
-
                 <Route exact path="/app/cssModule" component={Cssmodule} />
-
                 <Route render={() => <Redirect to="/404" />} />
             </Switch>
         )

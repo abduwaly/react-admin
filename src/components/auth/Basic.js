@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { Row, Col, Card } from 'antd';
 import BreadcrumbCustom from '@/components/BreadcrumbCustom';
 import AuthWidget from '@/components/widget/AuthWidget';
-import beauty from '@/style/imgs/beauty.jpg';
 
 class Basic extends Component {
     render() {
@@ -17,19 +16,15 @@ class Basic extends Component {
                         <Row>
                             <Col span={24}>
                                 <Card bordered={false} bodyStyle={{minHeight: 600}}>
-                                    {!auth.uid && <h2 style={{height: 500}} className="center">登录之后你将看到一张美女图</h2>}
+                                    {!auth.uid && <h2 style={{height: 500}} className="center">你还没登录的样子。。。</h2>}
                                     {
                                         auth.permissions && auth.permissions.includes('auth/authPage/visit') &&
                                         <div style={{textAlign: 'center'}}>
-                                            <img src={beauty} alt="" style={{height: 400}} />
+                                            你有visit权限。。。
                                             {(auth.permissions.includes('auth/authPage/edit') &&
                                             <div>
-                                                <p>看啥子美女，看点美景就行啦~<span role="img" aria-label="" aria-labelledby="">😄😄</span></p>
-                                                <p>管理员身份登录才能看到这两段话</p>
-                                            </div>) ||
-                                            <div>
-                                                <p>管理员登录将看到不一样的效果</p>
-                                            </div>
+                                                <p>你有edit权限（最高管理员登录了。。。）</p>
+                                            </div>)
                                             }
                                         </div>
 

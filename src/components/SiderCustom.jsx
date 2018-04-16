@@ -63,7 +63,7 @@ class SiderCustom extends Component {
                 collapsed={this.props.collapsed}
                 style={{ overflowY: 'auto' }}
             >
-                <div className="logo" />
+                <div className="logo">仁仁购</div>
                 <SiderMenu
                     menus={menus}
                     onClick={this.menuClick}
@@ -78,6 +78,16 @@ class SiderCustom extends Component {
                     #nprogress .spinner{
                         left: ${this.state.collapsed ? '70px' : '206px'};
                         right: 0 !important;
+                    }
+                    .logo{
+                        height: 32px;
+                        background: #27676d;
+                        border-radius: 6px;
+                        margin: 16px;
+                        color: white;
+                        line-height: 32px;
+                        text-align: center;
+                        font-size: 18px;
                     }
                     `}
                 </style>
