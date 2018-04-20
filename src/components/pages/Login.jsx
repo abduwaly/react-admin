@@ -76,7 +76,7 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToPorps = state => {
+const mapStateToProps = state => {
     const { auth } = state.httpData;
     return { auth };
 };
@@ -86,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToPorps, mapDispatchToProps)(Form.create()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));

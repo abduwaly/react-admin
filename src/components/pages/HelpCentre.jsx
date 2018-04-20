@@ -53,16 +53,16 @@ class HelpCentre extends React.Component{
         )
     }
 }
-// 这将store里的state树 转化为 本地props
-const mapStateToPorps = state => {
+// 将store的state 转化为本地props
+const mapStateToProps = state => {
     const { name } = state.globalName;
     return { name };
 };
-// 这里是action里我们想要的action, 我们可以通过props来获取
+// 将actions转换到本地props
 const mapDispatchToProps = dispatch => ({
     toLower: bindActionCreators(Actions.toLower, dispatch),
     toUpper: bindActionCreators(Actions.toUpper, dispatch)
 });
 
 
-export default connect(mapStateToPorps, mapDispatchToProps)(HelpCentre);
+export default connect(mapStateToProps, mapDispatchToProps)(HelpCentre);
