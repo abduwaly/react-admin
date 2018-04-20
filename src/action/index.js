@@ -23,3 +23,10 @@ export const fetchData = ({funcName, params, stateName}) => dispatch => {
     dispatch(requestData(stateName));
     return http[funcName](params).then(res => dispatch(receiveData(res, stateName)));
 };
+
+export const toLower = () => ({
+    type: type.LOWER_CASE
+});
+export const toUpper = () => ({
+    type: type.UPPER_CASE
+});

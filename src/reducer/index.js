@@ -27,6 +27,29 @@ const httpData = (state = {}, action) => {
     }
 };
 
+export const counter = (state = {value: 0}, action) => {
+    switch (action.type) {
+        case type.INCREMENT:
+            return { value : state.value+1 }
+        case type.DECREMENT:
+            return { value : state.value-1 }
+        default:
+            return { ...state }
+    }
+}
+
+const globalName = (state = {name: 'Abduwaly'}, action) => {
+    switch (action.type) {
+        case type.LOWER_CASE:
+            return { name : 'abduwaly' }
+        case type.UPPER_CASE:
+            return { name : 'ABDUWALY' }
+        default:
+            return { ...state }
+    }
+}
+
 export default combineReducers({
-    httpData
+    httpData,
+    globalName
 });

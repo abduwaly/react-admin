@@ -56,6 +56,7 @@ class SiderCustom extends Component {
         })
     };
     render() {
+        const logo = ['仁仁管理平台','仁仁'];
         return (
             <Sider
                 trigger={null}
@@ -63,7 +64,7 @@ class SiderCustom extends Component {
                 collapsed={this.props.collapsed}
                 style={{ overflowY: 'auto' }}
             >
-                <div className="logo">仁仁购</div>
+                <div className="logo">{ this.state.collapsed ? logo[1] : logo[0] }</div>
                 <SiderMenu
                     menus={menus}
                     onClick={this.menuClick}
