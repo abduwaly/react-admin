@@ -12,6 +12,7 @@ export const getPros = () => axios.post('http://api.xitu.io/resources/github', {
     offset: 0,
     limit: 30
 }).then(function (response) {
+    console.log(response);
     return response.data;
 }).catch(function (error) {
     console.log(error);

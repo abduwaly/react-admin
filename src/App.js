@@ -81,7 +81,8 @@ class App extends Component {
                         <style>
                         {`
                             #root{
-                                height: auto;
+                                // height: auto;
+                                min-height: 100%;
                             }
                         `}
                         </style>

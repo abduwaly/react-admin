@@ -7,6 +7,9 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import Dashboard from '../components/dashboard/Dashboard';
 import AuthBasic from '../components/auth/Basic';
 import RouterEnter from '../components/auth/RouterEnter';
+
+import ManagerAdd from '../components/manager/add/ManagerAdd';
+import Managers from '../components/manager/list/Managers';
 // import Wysiwyg from 'bundle-loader?lazy!../components/ui/Wysiwyg';  // 按需加载富文本配置
 // import Bundle from '../components/widget/Bundle';
 
@@ -29,8 +32,8 @@ export default class CRouter extends Component {
             <Switch>
                 {/* App相关 */}
                 <Route exact path="/app/dashboard/index" component={Dashboard} />
-                <Route exact path="/app/manager/add" component={() => <p>添加用户</p>} />
-                <Route exact path="/app/manager/list" component={() => <p>用户列表</p>} />
+                <Route exact path="/app/manager/add" component={ManagerAdd} />
+                <Route exact path="/app/manager/list" component={Managers} />
                 <Route exact path="/app/product/add" component={() => <p>添加商品</p>} />
                 <Route exact path="/app/product/list" component={() => <p>商品列表</p>} />
                 <Route exact path="/app/order/list" component={() => <p>订单列表</p>} />

@@ -10,6 +10,16 @@ class HelpCentre extends React.Component{
 
     state = counter(undefined,{});
 
+    componentWillMount() {
+        console.log("will...",this.state,this.props);
+    }
+    componentDidMount() {
+        console.log('did...',this.state,this.props);
+    }
+    componentWillReceiveProps(nextProp) {
+        console.log("receive props...",this.state,this.props,nextProp);
+    }
+
     dispatch(action) {
         this.setState(prevState => counter(prevState, action));
     }
