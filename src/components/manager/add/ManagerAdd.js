@@ -43,6 +43,8 @@ const residences = [{
 }
 ];
 
+const emailSuffix = ['qq.com', 'gmail.com', '163.com'];
+
 class ManagerAdd extends React.Component {
     state = {
         confirmDirty: false,
@@ -106,12 +108,16 @@ class ManagerAdd extends React.Component {
         callback();
     }
 
-    handleWebsiteChange = (value) => {
+    handleMailChange = (value) => {
         let autoCompleteResult;
         if (!value) {
             autoCompleteResult = [];
+        } else if(value.indexOf('@') < 0){
+            autoCompleteResult = emailSuffix.map(domain => `${value}@${domain}`);
+        } else if((value.charAt(value.length-1) === '@') && value.indexOf('@') === value.lastIndexOf('@')) {
+            autoCompleteResult = emailSuffix.map(domain => `${value}${domain}`);
         } else {
-            autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
+            autoCompleteResult = [];
         }
         this.setState({ autoCompleteResult });
     }
@@ -158,8 +164,8 @@ class ManagerAdd extends React.Component {
             </Select>
         );
 
-        const websiteOptions = autoCompleteResult.map(website => (
-            <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
+        const emailOptions = autoCompleteResult.map(email => (
+            <AutoCompleteOption key={email}>{email}</AutoCompleteOption>
         ));
 
         return (
@@ -168,17 +174,35 @@ class ManagerAdd extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormItem
                         {...formItemLayout}
-                        label="E-mail"
+                        label={(
+                            <span>
+                              用户名&nbsp;
+                              <Tooltip title="What do you want other to call you?">
+                                <Icon type="question-circle-o" />
+                              </Tooltip>
+                            </span>
+                          )}
                         hasFeedback
                     >
-                        {getFieldDecorator('email', {
-                            rules: [{
-                                type: 'email', message: 'The input is not valid E-mail!',
-                            }, {
-                                required: true, message: 'Please input your E-mail!',
-                            }],
+                        {getFieldDecorator('nickname', {
+                            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
                         })(
                             <Input />
+                        )}
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        label="手机号码"
+                        hasFeedback
+                    >
+                        {getFieldDecorator('phone', {
+                            rules: [{
+                                required: true, message: '请输入手机号码!' },
+                                {
+                                    validator: this.checkPhone,
+                                }],
+                        })(
+                            <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
                         )}
                     </FormItem>
                     <FormItem
@@ -213,20 +237,15 @@ class ManagerAdd extends React.Component {
                     </FormItem>
                     <FormItem
                         {...formItemLayout}
-                        label={(
-                            <span>
-                              用户名&nbsp;
-                              <Tooltip title="What do you want other to call you?">
-                                <Icon type="question-circle-o" />
-                              </Tooltip>
-                            </span>
-                          )}
-                        hasFeedback
+                        label="角色"
                     >
-                        {getFieldDecorator('nickname', {
-                            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+                        {getFieldDecorator('role', {
+                            rules: [{ required: true, message: 'Please select a role!' }],
                         })(
-                            <Input />
+                            <Select placeholder="select a role" onChange={this.handleChange}>
+                                <Option value="admin">管理员</Option>
+                                <Option value="shop">店家</Option>
+                            </Select>
                         )}
                     </FormItem>
                     <FormItem
@@ -241,46 +260,21 @@ class ManagerAdd extends React.Component {
                     </FormItem>
                     <FormItem
                         {...formItemLayout}
-                        label="手机号码"
+                        label="E-mail"
                         hasFeedback
                     >
-                        {getFieldDecorator('phone', {
+                        {getFieldDecorator('email', {
                             rules: [{
-                                required: true, message: '请输入手机号码!' },
-                            {
-                                validator: this.checkPhone,
+                                type: 'email', message: 'The input is not valid E-mail!',
                             }],
                         })(
-                            <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
-                        )}
-                    </FormItem>
-                    <FormItem
-                        {...formItemLayout}
-                        label="Website"
-                    >
-                        {getFieldDecorator('website', {
-                            rules: [{ required: true, message: 'Please input website!' }],
-                        })(
                             <AutoComplete
-                                dataSource={websiteOptions}
-                                onChange={this.handleWebsiteChange}
-                                placeholder="website"
+                                dataSource={emailOptions}
+                                onChange={this.handleMailChange}
+                                placeholder="Email"
                             >
                                 <Input />
                             </AutoComplete>
-                        )}
-                    </FormItem>
-                    <FormItem
-                        {...formItemLayout}
-                        label="角色"
-                    >
-                        {getFieldDecorator('role', {
-                            rules: [{ required: true, message: 'Please select a role!' }],
-                        })(
-                            <Select placeholder="select a role" onChange={this.handleChange}>
-                                <Option value="admin">管理员</Option>
-                                <Option value="shop">店家</Option>
-                            </Select>
                         )}
                     </FormItem>
                     <FormItem {...tailFormItemLayout}>
