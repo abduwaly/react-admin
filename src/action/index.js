@@ -30,3 +30,11 @@ export const toLower = () => ({
 export const toUpper = () => ({
     type: type.UPPER_CASE
 });
+
+export const showMDetails = (data) => ({
+    type: type.SHOW_M_DETAILS,
+    data,
+});
+export const hideMDetails = () => ({
+    type: type.HIDE_M_DETAILS
+});

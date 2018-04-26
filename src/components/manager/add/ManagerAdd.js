@@ -29,7 +29,7 @@ class ManagerAdd extends React.Component {
             message.loading('正在加载...',0);
         } else {
             message.destroy();
-            if(nextRes.data && nextRes.data.code === 200){
+            if(nextRes.data && nextRes.data.code === 0){
                 message.success('添加成功!',1,function () {
                     receiveData(null, 'creationRes');
                     history.push('/app/manager/list');
@@ -43,7 +43,7 @@ class ManagerAdd extends React.Component {
             if (!err) {
                 const { fetchData } = this.props;
                 console.log('Received values of form: ', values);
-                fetchData({funcName: 'getPros', stateName: 'creationRes'});
+                fetchData({funcName: 'addManager', params: values, stateName: 'creationRes'});
             }
         });
     }
@@ -151,8 +151,8 @@ class ManagerAdd extends React.Component {
                           )}
                         hasFeedback
                     >
-                        {getFieldDecorator('nickname', {
-                            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+                        {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
                         })(
                             <Input />
                         )}

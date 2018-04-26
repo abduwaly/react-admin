@@ -10,3 +10,6 @@ export const DECREMENT = 'DECREMENT';
 
 export const LOWER_CASE = 'LOWER_CASE';
 export const UPPER_CASE = 'UPPER_CASE';
+
+export const SHOW_M_DETAILS = 'SHOW_M_DETAILS';
+export const HIDE_M_DETAILS = 'HIDE_M_DETAILS';

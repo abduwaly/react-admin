@@ -2,7 +2,7 @@
  * Created by hao.cheng on 2017/4/16.
  */
 import axios from 'axios';
-import { get } from './tools';
+import { get, post } from './tools';
 import * as config from './config';
 
 export const getPros = () => axios.post('http://api.xitu.io/resources/github', {
@@ -38,3 +38,12 @@ export const admin = () => get({url: config.MOCK_AUTH_ADMIN});
 
 // 访问权限获取
 export const guest = () => get({url: config.MOCK_AUTH_VISITOR});
+
+export const addManager = (data) => post({
+    url: 'http://localhost:3000/manager/add',
+    data: data
+});
+
+export const managerList = () => get({url: 'http://localhost:3000/manager/all'});
+
+export const getManagerById = (id) => get({url: 'http://localhost:3000/manager/'+id});

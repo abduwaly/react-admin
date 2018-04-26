@@ -49,7 +49,19 @@ const globalName = (state = {name: 'Abduwaly'}, action) => {
     }
 }
 
+const detailsInfo = (state = {visible: false, detailsId: undefined}, action) => {
+    switch (action.type) {
+        case type.SHOW_M_DETAILS:
+            return { visible: true, detailsId: action.data }
+        case type.HIDE_M_DETAILS:
+            return { visible: false, detailsId: undefined }
+        default:
+            return { ...state }
+    }
+}
+
 export default combineReducers({
     httpData,
-    globalName
+    globalName,
+    detailsInfo
 });
